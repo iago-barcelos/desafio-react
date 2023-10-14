@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NewsType } from './types';
+import Header from './components/Header';
+import NewsContext from './context/NewsContext';
 
 function App() {
   const [news, setNews] = useState<NewsType[]>([]);
@@ -15,10 +17,12 @@ function App() {
     getFetch();
   }, []);
 
-  return (
-    <div>
+  news
 
-    </div>
+  return (
+    <NewsContext.Provider value={ { news } }>
+      <Header />
+    </NewsContext.Provider>
   )
 }
 
