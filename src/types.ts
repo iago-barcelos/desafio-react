@@ -1,10 +1,10 @@
 export type NewsType = {
-  data: string,
+  data_publicacao: string,
   destaque: boolean,
   editorias: string,
   id: number,
-  imagem: string,
-  intro: string,
+  imagens: string,
+  introducao: string,
   link: string,
   produto_id: number,
   produtos: string,

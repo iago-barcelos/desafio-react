@@ -8,9 +8,9 @@ function NewsCards() {
     <div>
         { news.map((item) => (
           <div key={item.id}>
-            <img src={ item.imagem } alt={ item.titulo } />
+            <img src={ item.imagens } alt={ item.titulo } />
             <h3>{item.titulo}</h3>
-            <p>{item.intro}</p>
+            <p>{item.introducao}</p>
           </div>
         )) }
     </div>
