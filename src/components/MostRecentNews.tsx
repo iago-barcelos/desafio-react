@@ -1,9 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import NewsContext from "../context/NewsContext";
 import { calculateDaysDifference } from "../utils/function";
 import ReadTheNewsHere from "./ReadTheNewsHere";
+import FavoriteButton from "./FavoriteButton";
 
 function MostRecentNews() {
+  // Define o estado para o botão de favoritar
+  const [favorite, setFavorite] = useState(false)
+
+  function handleFavoriteClick() {
+    favorite ? setFavorite(false) : setFavorite(true);
+  }
+
   // Lê os dados do contexto e armazena na variavel news
   const news = useContext(NewsContext);
 
@@ -58,7 +66,13 @@ function MostRecentNews() {
         <h1>Notícia mais recente</h1>
         <h2>{mostRecentNewsItem.titulo}</h2>
         <p>{mostRecentNewsItem.introducao}</p>
-        <p>{displayDate}</p>
+        <div>
+          <p>{displayDate}</p>
+          <FavoriteButton 
+            isFavorite={favorite} 
+            onClick={ () => handleFavoriteClick()}
+          />
+        </div>
 
         <ReadTheNewsHere
           link={ mostRecentNewsItem.link } 

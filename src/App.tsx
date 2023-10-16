@@ -3,6 +3,7 @@ import { NewsType } from './types';
 import Header from './components/Header';
 import NewsContext from './context/NewsContext';
 import MostRecentNews from './components/MostRecentNews';
+import NewsCards from './components/NewsCards';
 /* import NewsCards from './components/NewsCards'; */
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
     <NewsContext.Provider value={ news }>
       <Header />
       <MostRecentNews />
+      <NewsCards />
     </NewsContext.Provider>
   )
 }
