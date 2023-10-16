@@ -1,43 +1,49 @@
 import { useContext } from "react";
 import NewsContext from "../context/NewsContext";
 import { calculateDaysDifference } from "../utils/function";
+import ReadTheNewsHere from "./ReadTheNewsHere";
 
 function MostRecentNews() {
+  // Lê os dados do contexto e armazena na variavel news
   const news = useContext(NewsContext);
 
   // Função para encontrar a notícia mais recente com base na data de publicação
   const findMostRecentNews = () => {
     if (!news || news.length === 0) return { news: null, daysDifference: 0, imageUrl: '' };
-  
+    
+    // Armazena a data atual na variável currentDate
     const currentDate = new Date();
     
+    // Esse bloco de código separa as informações da chave data_publicacao
     const mostRecentNews = news[0];
     const dateSplit = mostRecentNews.data_publicacao.split('/')
     const day = parseInt(dateSplit[0], 10);
     const month = parseInt(dateSplit[1], 10) -1;
     const year = parseInt(dateSplit[2], 10)
 
+    // Utiliza o Date constructor para adequar o formato da data e armazena na variável mostRecentDate
     const date = new Date (year, month, day)
-    console.log(date)
-    
     const mostRecentDate = new Date(date);
-  
+
+    // Utiliza a função calculateDaysDifference para calcular a diferença entre currentDate e mostRecentDate
     const daysDifference = calculateDaysDifference(currentDate, mostRecentDate);
-    console.log(daysDifference)
-  
+
+    // Utiliza o método JSON.parse para tratar o dado da chave imagens do retorno da API
     const imageInfo = JSON.parse(mostRecentNews.imagens);
     const imageURL = imageInfo.image_intro;
   
+    // Retorna o objeto que será utilizado na renderização das informações
     return { news: mostRecentNews, daysDifference, imageURL };
   };
   
-
+  // Desestruturação para utilizar na renderização
   const { news: mostRecentNewsItem, daysDifference, imageURL } = findMostRecentNews();
 
   if (!mostRecentNewsItem) {
     return null;
   }
 
+  // Se daysDifference for 0, a notícia é de hoje, caso contrário escreve "X dias atrás"
   let displayDate = "";
   if (daysDifference === 0) {
     displayDate = "Hoje";
@@ -53,11 +59,11 @@ function MostRecentNews() {
         <h2>{mostRecentNewsItem.titulo}</h2>
         <p>{mostRecentNewsItem.introducao}</p>
         <p>{displayDate}</p>
-        <button
-          onClick={ () => window.open(mostRecentNewsItem.link, "_blank") }
-        >
-          Leia a notícia aqui
-        </button>
+
+        <ReadTheNewsHere
+          link={ mostRecentNewsItem.link } 
+          onClick={ () => window.open(mostRecentNewsItem.link, '_blank') }
+        />
       </div>
     </div>
   );
