@@ -4,10 +4,14 @@ import Header from './components/Header';
 import NewsContext from './context/NewsContext';
 import MostRecentNews from './components/MostRecentNews';
 import NewsCards from './components/NewsCards';
-/* import NewsCards from './components/NewsCards'; */
+import FilterBar from './components/FilterBar';
+import FavoriteProvider from './context/FavoriteProvider';
 
 function App() {
   const [news, setNews] = useState<NewsType[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsType[]>([]);
+  const [favoriteNews, setFavoriteNews] = useState<number[]>([])
+  const [activeFilter, setActiveFilter] = useState("Mais Recentes");
 
   useEffect(() => {
     async function getFetch() {
@@ -20,8 +24,9 @@ function App() {
         
         const response = await request.json();
         const newsArray = response.items
-        console.log(newsArray)
-        setNews(newsArray)
+        /* console.log(newsArray) */
+        setNews(newsArray);
+        setFilteredNews(newsArray);
       } catch(error) {
         console.error('Erros fetching data:', error)
       }
@@ -29,11 +34,29 @@ function App() {
     getFetch();
   }, []);
 
+  function handleFilterChange(filter: string) {
+    setActiveFilter(filter);
+
+    if (filter === "Mais Recentes") {
+      setFilteredNews(news);
+    } else if (filter === "Release") {
+      setFilteredNews(news.filter(item => item.tipo === "Release"));
+    } else if (filter === "Notícia") {
+      setFilteredNews(news.filter(item => item.tipo === "Notícia"));
+    } else if (filter === "Favoritas") {
+      const filteredFavoriteNews = news.filter((item) => favoriteNews.includes(item.id));
+      setFilteredNews(filteredFavoriteNews);
+    }
+  }
+
   return (
     <NewsContext.Provider value={ news }>
-      <Header />
-      <MostRecentNews />
-      <NewsCards />
+      <FavoriteProvider>
+        <Header />
+        <MostRecentNews />
+        <FilterBar onFilterChange={ handleFilterChange }/>
+        <NewsCards />
+      </FavoriteProvider>
     </NewsContext.Provider>
   )
 }
