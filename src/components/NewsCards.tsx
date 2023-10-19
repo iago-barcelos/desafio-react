@@ -32,10 +32,6 @@ function NewsCards() {
   function handleLoadMoreClick() {
     setVisibleNewsCount((prevCount) => prevCount + 9);
   }
-/* 
-  (
-    <button onClick={handleLoadMoreClick}>Mais notícias</button>
-  ) */
 
   function renderCards(newsToRender: NewsType[]) {
     return newsToRender.map((item) => (

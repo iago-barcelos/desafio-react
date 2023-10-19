@@ -4,12 +4,11 @@ import { calculateDaysDifference } from "../utils/function";
 import ReadTheNewsHere from "./ReadTheNewsHere";
 import FavoriteButton from "./FavoriteButton";
 import FavoriteContext from "../context/FavoriteContext";
-import useFilterFavoriteObjects from "../hooks/useFilterFavoriteObjects";
 
 function MostRecentNews() {
   // Define o estado para o botão de favoritar
   const [favorite, setFavorite] = useState(false);
-  const { toggleFavorite, favorites } = useContext(FavoriteContext);
+  const { toggleFavorite } = useContext(FavoriteContext);
 
   function handleFavoriteClick() {
     if(mostRecentNewsItem)
@@ -52,10 +51,6 @@ function MostRecentNews() {
   // Desestruturação para utilizar na renderização
   const { news: mostRecentNewsItem, daysDifference, imageURL } = findMostRecentNews();
 
-  // Filtrar os objetos que tenham o id igual ao array de id's favoritados
-  const filterHook = useFilterFavoriteObjects(news, favorites);
-  /* console.log('funcionamento do hook', filterHook); */
-
   // Se não houver notícia mais recente, retorna nulo
   if (!mostRecentNewsItem) {
     return null;
@@ -77,12 +72,6 @@ function MostRecentNews() {
         <h2>{mostRecentNewsItem.titulo}</h2>
         <p>{mostRecentNewsItem.introducao}</p>
         <h1>Notícias Favoritas:</h1>
-        {/* filterHook.map((favorite) => (
-          <div key={favorite.id}>
-            <h2>{favorite.titulo}</h2>
-            <p>{favorite.introducao}</p>
-          </div>
-        )) */}
         <div>
           <p>{displayDate}</p>
           <FavoriteButton 
