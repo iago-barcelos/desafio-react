@@ -34,6 +34,7 @@ function App() {
     getFetch();
   }, []);
 
+
   function handleFilterChange(filter: string) {
     setActiveFilter(filter);
 
