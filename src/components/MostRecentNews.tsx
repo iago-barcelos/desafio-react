@@ -61,7 +61,7 @@ function MostRecentNews() {
   if (daysDifference === 0) {
     displayDate = "Hoje";
   } else {
-    displayDate = `${daysDifference} dia${daysDifference !== 1 ? "s" : ""} atrás`;
+    displayDate = `Há ${daysDifference} dia${daysDifference !== 1 ? "s" : ""} atrás`;
   }
 
   return (
@@ -71,7 +71,6 @@ function MostRecentNews() {
         <h1>Notícia mais recente</h1>
         <h2>{mostRecentNewsItem.titulo}</h2>
         <p>{mostRecentNewsItem.introducao}</p>
-        <h1>Notícias Favoritas:</h1>
         <div>
           <p>{displayDate}</p>
           <FavoriteButton 

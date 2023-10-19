@@ -35,7 +35,6 @@ function App() {
       <FavoriteProvider>
         <Header />
         <MostRecentNews />
-        <h2>ABAIXO</h2>
         <NewsCards />
       </FavoriteProvider>
     </NewsContext.Provider>

@@ -4,6 +4,7 @@ import ReadTheNewsHere from "./ReadTheNewsHere";
 import FavoriteButton from "./FavoriteButton";
 import FavoriteContext from "../context/FavoriteContext";
 import { NewsType } from "../types";
+import { calculateDaysDifference } from "../utils/function";
 
 function NewsCards() {
   // Cria os estados para armazenar as informações
@@ -34,24 +35,35 @@ function NewsCards() {
   }
 
   function renderCards(newsToRender: NewsType[]) {
-    return newsToRender.map((item) => (
-      <section key={item.id}>
-        <div>
-          <h3>{`${item.titulo}(ID: ${item.id}, Tipo: ${item.tipo})`}</h3>
-          <p>{item.introducao}</p>
-          <ReadTheNewsHere
-            link={item.link}
-            onClick={() => window.open(item.link, "_blank")}
-          />
-        </div>
-        <div>
-          <FavoriteButton
-            isFavorite={favorites.includes(item.id)}
-            onClick={() => handleFavoriteClick(item)}
-          />
-        </div>
-      </section>
-    ));
+    return newsToRender.map((item) => {
+      const currentDate = new Date();
+      const dateSplit = item.data_publicacao.split('/');
+      const day = parseInt(dateSplit[0], 10);
+      const month = parseInt(dateSplit[1], 10) -1;
+      const year = parseInt(dateSplit[2], 10);
+      const newsDate = new Date(year, month, day);
+      const daysAgo = calculateDaysDifference(currentDate, newsDate);
+
+      return (
+        <section key={item.id}>
+          <div>
+            <h3>{`${item.titulo}(ID: ${item.id}, Tipo: ${item.tipo})`}</h3>
+            <p>{item.introducao}</p>
+            <p>{`Há ${daysAgo} dias atrás`}</p>
+            <ReadTheNewsHere
+              link={item.link}
+              onClick={() => window.open(item.link, "_blank")}
+              />
+          </div>
+          <div>
+            <FavoriteButton
+              isFavorite={favorites.includes(item.id)}
+              onClick={() => handleFavoriteClick(item)}
+            />
+          </div>
+        </section>
+      );
+    });
   }
 
   const filteredNews: NewsType[] = 
