@@ -4,6 +4,7 @@ import { calculateDaysDifference } from "../utils/function";
 import ReadTheNewsHere from "./ReadTheNewsHere";
 import FavoriteButton from "./FavoriteButton";
 import FavoriteContext from "../context/FavoriteContext";
+import * as Style from '../styles/MostRecentStyle';
 
 function MostRecentNews() {
   // Define o estado para o botão de favoritar
@@ -65,26 +66,28 @@ function MostRecentNews() {
   }
 
   return (
-    <div>
+    <Style.MostRecentContainerDiv>
       <img src={`https://agenciadenoticias.ibge.gov.br/${imageURL}`} alt={ mostRecentNewsItem.titulo } />
-      <div>
-        <h1>Notícia mais recente</h1>
-        <h2>{mostRecentNewsItem.titulo}</h2>
-        <p>{mostRecentNewsItem.introducao}</p>
-        <div>
-          <p>{displayDate}</p>
+      <Style.MostRecentNewsInfoDiv>
+        <Style.MostRecentHeadDiv>
+          <h1>Notícia mais recente</h1>
           <FavoriteButton 
             isFavorite={favorite} 
             onClick={ () => handleFavoriteClick()}
           />
+        </Style.MostRecentHeadDiv>
+        <h2>{mostRecentNewsItem.titulo}</h2>
+        <p>{mostRecentNewsItem.introducao}</p>
+        <div>
+          <p>{displayDate}</p>
         </div>
 
         <ReadTheNewsHere
           link={ mostRecentNewsItem.link } 
           onClick={ () => window.open(mostRecentNewsItem.link, '_blank') }
         />
-      </div>
-    </div>
+      </Style.MostRecentNewsInfoDiv>
+    </Style.MostRecentContainerDiv>
   );
 }
 

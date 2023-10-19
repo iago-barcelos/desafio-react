@@ -5,6 +5,7 @@ import FavoriteButton from "./FavoriteButton";
 import FavoriteContext from "../context/FavoriteContext";
 import { NewsType } from "../types";
 import { calculateDaysDifference } from "../utils/function";
+import * as Style from '../styles/NewsCardsStyle';
 
 function NewsCards() {
   // Cria os estados para armazenar as informações
@@ -45,7 +46,7 @@ function NewsCards() {
       const daysAgo = calculateDaysDifference(currentDate, newsDate);
 
       return (
-        <section key={item.id}>
+        <Style.EachNewsCard key={item.id}>
           <div>
             <h3>{`${item.titulo}(ID: ${item.id}, Tipo: ${item.tipo})`}</h3>
             <p>{item.introducao}</p>
@@ -61,7 +62,7 @@ function NewsCards() {
               onClick={() => handleFavoriteClick(item)}
             />
           </div>
-        </section>
+        </Style.EachNewsCard>
       );
     });
   }
@@ -78,35 +79,35 @@ function NewsCards() {
   : [];
 
   return (
-    <div>
       <div>
-        {filterBarStringArray.map((element) => (
-          <button
-            key={element}
-            onClick={ () => setFilter(element) }
-            style={{
-              fontWeight: element === filter ? "bold" : "normal",
-            }}
-          >
-            {element}
-          </button>
-        ))}
+        <Style.FilterBarDiv>
+          {filterBarStringArray.map((element) => (
+            <Style.FilterBarButtons
+              key={element}
+              onClick={ () => setFilter(element) }
+              style={{
+                borderBottom: element === filter ? "ridge #C31815" : "none"
+              }}
+            >
+              {element}
+            </Style.FilterBarButtons>
+          ))}
+        </Style.FilterBarDiv>
 
-        <div className="GridOfCards">
+        <Style.GridDiv>
           {filter === "Favoritas" && favorites.length === 0 ? (
             <h2>Nenhuma notícia favoritada.</h2>
             ) : (
             renderCards(filteredNews)
           )}
-        </div>
+        </Style.GridDiv>
 
         <div>
         {filter !== "Favoritas" && visibleNewsCount < remainingNews.length && (
-          <button onClick={handleLoadMoreClick}>Mais notícias</button>
+          <Style.StyledButton onClick={handleLoadMoreClick}>Mais notícias</Style.StyledButton>
         )}
         </div>
       </div>
-    </div>
   );
 }
 
