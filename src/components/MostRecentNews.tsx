@@ -77,12 +77,12 @@ function MostRecentNews() {
         <h2>{mostRecentNewsItem.titulo}</h2>
         <p>{mostRecentNewsItem.introducao}</p>
         <h1>Notícias Favoritas:</h1>
-        {filterHook.map((favorite) => (
+        {/* filterHook.map((favorite) => (
           <div key={favorite.id}>
             <h2>{favorite.titulo}</h2>
             <p>{favorite.introducao}</p>
           </div>
-        ))}
+        )) */}
         <div>
           <p>{displayDate}</p>
           <FavoriteButton 
