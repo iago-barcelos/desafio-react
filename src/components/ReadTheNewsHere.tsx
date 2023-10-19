@@ -1,3 +1,5 @@
+import * as Style from '../styles/ReadTheNewsHereStyle';
+
 type ButtonProps = {
   link: string,
   onClick: (link:string) => void
@@ -11,11 +13,11 @@ function ReadTheNewsHere({link, onClick}: ButtonProps) {
   }
   
   return (
-    <button
+    <Style.ReadTheNewsButton
       onClick={ handleClick }
     >
       Leia a notícia aqui!
-    </button>
+    </Style.ReadTheNewsButton>
   );
 }
 

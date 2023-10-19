@@ -70,22 +70,22 @@ function MostRecentNews() {
       <img src={`https://agenciadenoticias.ibge.gov.br/${imageURL}`} alt={ mostRecentNewsItem.titulo } />
       <Style.MostRecentNewsInfoDiv>
         <Style.MostRecentHeadDiv>
-          <h1>Notícia mais recente</h1>
+          <Style.TextElementH1>Notícia mais recente</Style.TextElementH1>
           <FavoriteButton 
             isFavorite={favorite} 
             onClick={ () => handleFavoriteClick()}
           />
         </Style.MostRecentHeadDiv>
-        <h2>{mostRecentNewsItem.titulo}</h2>
-        <p>{mostRecentNewsItem.introducao}</p>
-        <div>
-          <p>{displayDate}</p>
-        </div>
+        <Style.TextElementTitle>{mostRecentNewsItem.titulo}</Style.TextElementTitle>
+        <Style.TextElementIntro>{mostRecentNewsItem.introducao}</Style.TextElementIntro>
+        <Style.MostRecentDateDiv>
+          <Style.DateTextElementP>{displayDate}</Style.DateTextElementP>
+          <ReadTheNewsHere
+            link={ mostRecentNewsItem.link } 
+            onClick={ () => window.open(mostRecentNewsItem.link, '_blank') }
+          />
+        </Style.MostRecentDateDiv>
 
-        <ReadTheNewsHere
-          link={ mostRecentNewsItem.link } 
-          onClick={ () => window.open(mostRecentNewsItem.link, '_blank') }
-        />
       </Style.MostRecentNewsInfoDiv>
     </Style.MostRecentContainerDiv>
   );

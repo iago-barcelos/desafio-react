@@ -1,6 +1,10 @@
+import * as Style from '../styles/HeaderStyle';
+
 function Header() {
   return(
-    <h1>Trybe News</h1>
+    <Style.TrybeDiv>
+      <Style.TrybeHeader>Trybe News</Style.TrybeHeader>
+    </Style.TrybeDiv>
   )
 }
 
