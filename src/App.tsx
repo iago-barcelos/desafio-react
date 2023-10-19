@@ -5,6 +5,7 @@ import NewsContext from './context/NewsContext';
 import MostRecentNews from './components/MostRecentNews';
 import NewsCards from './components/NewsCards';
 import FavoriteProvider from './context/FavoriteProvider';
+import { GlobalStyle } from './styles/GlobalStyle';
 
 function App() {
   const [news, setNews] = useState<NewsType[]>([]);
@@ -33,6 +34,7 @@ function App() {
   return (
     <NewsContext.Provider value={ news }>
       <FavoriteProvider>
+        <GlobalStyle/>
         <Header />
         <MostRecentNews />
         <NewsCards />

@@ -91,11 +91,14 @@ function NewsCards() {
             {element}
           </button>
         ))}
-        {filter === "Favoritas" && favorites.length === 0 ? (
-          <h2>Nenhuma notícia favoritada.</h2>
-          ) : (
-          renderCards(filteredNews)
-        )}
+
+        <div className="GridOfCards">
+          {filter === "Favoritas" && favorites.length === 0 ? (
+            <h2>Nenhuma notícia favoritada.</h2>
+            ) : (
+            renderCards(filteredNews)
+          )}
+        </div>
 
         <div>
         {filter !== "Favoritas" && visibleNewsCount < remainingNews.length && (
