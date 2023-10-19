@@ -3,13 +3,17 @@ import NewsContext from "../context/NewsContext";
 import { calculateDaysDifference } from "../utils/function";
 import ReadTheNewsHere from "./ReadTheNewsHere";
 import FavoriteButton from "./FavoriteButton";
+import FavoriteContext from "../context/FavoriteContext";
 
 function MostRecentNews() {
   // Define o estado para o botão de favoritar
-  const [favorite, setFavorite] = useState(false)
+  const [favorite, setFavorite] = useState(false);
+  const { toggleFavorite, favorites } = useContext(FavoriteContext);
 
   function handleFavoriteClick() {
-    favorite ? setFavorite(false) : setFavorite(true);
+    if(mostRecentNewsItem)
+    toggleFavorite(mostRecentNewsItem.id)
+    setFavorite(!!mostRecentNewsItem)
   }
 
   // Lê os dados do contexto e armazena na variavel news
@@ -47,6 +51,11 @@ function MostRecentNews() {
   // Desestruturação para utilizar na renderização
   const { news: mostRecentNewsItem, daysDifference, imageURL } = findMostRecentNews();
 
+  // Filtrar os objetos que tenham o id igual ao array de id's favoritados
+  const filteredObjects = news.filter((object) => favorites.includes(object.id));
+
+  console.log('Objetos Filtrados',filteredObjects);
+
   if (!mostRecentNewsItem) {
     return null;
   }
@@ -66,6 +75,9 @@ function MostRecentNews() {
         <h1>Notícia mais recente</h1>
         <h2>{mostRecentNewsItem.titulo}</h2>
         <p>{mostRecentNewsItem.introducao}</p>
+        {favorites.map((favorite) => (
+          <p key={favorite}>{favorite}</p>
+        ))}
         <div>
           <p>{displayDate}</p>
           <FavoriteButton 

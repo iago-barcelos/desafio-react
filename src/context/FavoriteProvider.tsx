@@ -16,8 +16,6 @@ function FavoriteProvider({ children }: FavoriteProviderProps) {
       return [...prevFavorites, newsId];
     });
   }
-  
-  
 
   return (
     <FavoriteContext.Provider value={{ favorites, toggleFavorite }}>

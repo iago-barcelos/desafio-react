@@ -39,13 +39,22 @@ function App() {
 
     if (filter === "Mais Recentes") {
       setFilteredNews(news);
+      console.log('mais recentes');
+
     } else if (filter === "Release") {
       setFilteredNews(news.filter(item => item.tipo === "Release"));
+      console.log('release');
+
     } else if (filter === "Notícia") {
       setFilteredNews(news.filter(item => item.tipo === "Notícia"));
+      console.log('notícia');
+
     } else if (filter === "Favoritas") {
       const filteredFavoriteNews = news.filter((item) => favoriteNews.includes(item.id));
+
       setFilteredNews(filteredFavoriteNews);
+
+      console.log('setFilteredNews', filteredFavoriteNews);
     }
   }
 
@@ -54,7 +63,10 @@ function App() {
       <FavoriteProvider>
         <Header />
         <MostRecentNews />
-        <FilterBar onFilterChange={ handleFilterChange }/>
+        <FilterBar 
+          onFilterChange={ handleFilterChange }
+          stringFilter={ activeFilter }
+        />
         <NewsCards />
       </FavoriteProvider>
     </NewsContext.Provider>

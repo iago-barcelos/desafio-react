@@ -1,12 +1,13 @@
 import { useState } from "react"
 
 type FilterChange = {
-  onFilterChange: (filter:string) => void
+  onFilterChange: (filter:string) => void,
+  stringFilter: string
 }
 
-function FilterBar({ onFilterChange }: FilterChange) {
+function FilterBar({ onFilterChange, stringFilter }: FilterChange) {
   const filters = ["Mais Recentes","Release","Notícias","Favoritas"];
-  const [activeFilter, setActiveFilter] = useState(filters[0]);
+  const [activeFilter, setActiveFilter] = useState(stringFilter);
 
   function handleFilterClick(filter: string) {
     setActiveFilter(filter);

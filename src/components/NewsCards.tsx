@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import NewsContext from "../context/NewsContext";
 import ReadTheNewsHere from "./ReadTheNewsHere";
 import FavoriteButton from "./FavoriteButton";
@@ -15,9 +15,9 @@ function NewsCards() {
   const favoritesContext = useContext(FavoriteContext);
   const { favorites ,toggleFavorite } = favoritesContext
 
-  useEffect(() => {
-    console.log('Favoritos atualizados:', favorites);
-  }, [favorites]);
+  /* useEffect(() => {
+  }, [favorites]); */
+  console.log('Favoritos atualizados:', favorites);
   
 
   // retorna null se não há notícias ou o array está vazio
@@ -45,7 +45,7 @@ function NewsCards() {
         { visibleNews.map((item) => (
           <section key={item.id}>
             <div>
-              <h3>{item.titulo}</h3>
+              <h3>{`${item.titulo}(ID: ${item.id}, Tipo: ${item.tipo})`}</h3>
               <p>{item.introducao}</p>
               <ReadTheNewsHere 
                 link={ item.link }
