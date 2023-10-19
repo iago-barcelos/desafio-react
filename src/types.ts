@@ -10,5 +10,5 @@ export type NewsType = {
   produtos: string,
   produtos_relacionais: string,
   tipo: string,
-  titulo: string,
+  titulo: string
 }

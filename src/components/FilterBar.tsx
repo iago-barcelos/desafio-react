@@ -6,7 +6,7 @@ type FilterChange = {
 }
 
 function FilterBar({ onFilterChange, stringFilter }: FilterChange) {
-  const filters = ["Mais Recentes","Release","Notícias","Favoritas"];
+  const filters = ["Mais Recentes","Release","Notícia","Favoritas"];
   const [activeFilter, setActiveFilter] = useState(stringFilter);
 
   function handleFilterClick(filter: string) {
