@@ -6,6 +6,7 @@ import MostRecentNews from './components/MostRecentNews';
 import NewsCards from './components/NewsCards';
 import FavoriteProvider from './context/FavoriteProvider';
 import { GlobalStyle } from './styles/GlobalStyle';
+//teste
 
 function App() {
   const [news, setNews] = useState<NewsType[]>([]);
