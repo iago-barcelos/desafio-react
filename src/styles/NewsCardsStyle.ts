@@ -12,14 +12,33 @@ export const GridDiv = styled.div`
 `;
 
 export const EachNewsCard = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 95%;
-  border-radius: 3px;
-  background-color: green;
-  filter: drop-shadow(0px 2px 14px rgba(42, 42, 42, 0.24));
+  border: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
-export const StyledButton = styled.button`
+export const DivReadAndFavorite = styled.section`
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+`;
+
+export const TextContentDiv = styled.div`
+  padding: 2%;
+`;
+
+export const ReadMoreButton = styled.button`
   
+`;
+
+export const HeartButton = styled.button`
+  background: none;
+  border: none;
 `;
 
 export const FilterBarButtons = styled.button`

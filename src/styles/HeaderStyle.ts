@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const TrybeDiv = styled.div`
   font-size: 45px;
-  background-image: url('./src/assets/trybe-logo.png');
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: left;

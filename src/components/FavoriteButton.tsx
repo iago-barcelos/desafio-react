@@ -1,6 +1,7 @@
 import whiteHeartSVG from '../assets/white-heart.svg';
 import redHeartSVG from '../assets/red-heart.svg';
 import { useState } from 'react';
+import { HeartButton } from '../styles/NewsCardsStyle';
 
 type FavoriteButtonProps = {
   isFavorite: boolean,
@@ -17,12 +18,12 @@ function FavoriteButton({ isFavorite, onClick }: FavoriteButtonProps) {
   }
 
   return (
-    <button onClick={handleHeartClick}>
+    <HeartButton onClick={handleHeartClick}>
       <img
         src={localIsFavorite ? redHeartSVG : whiteHeartSVG } 
         alt={localIsFavorite ? 'Coração Vazio' : 'Coração Vermelho'}
       />
-    </button>
+    </HeartButton>
   );
 }
 

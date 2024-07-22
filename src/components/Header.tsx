@@ -1,10 +1,10 @@
-import * as Style from '../styles/HeaderStyle';
+import { TrybeDiv, TrybeHeader } from '../styles/HeaderStyle';
 
 function Header() {
   return(
-    <Style.TrybeDiv>
-      <Style.TrybeHeader>Trybe News</Style.TrybeHeader>
-    </Style.TrybeDiv>
+    <TrybeDiv>
+      <TrybeHeader>IBGE News</TrybeHeader>
+    </TrybeDiv>
   )
 }
 

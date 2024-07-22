@@ -47,21 +47,21 @@ function NewsCards() {
 
       return (
         <Style.EachNewsCard key={item.id}>
-          <div>
-            <h3>{`${item.titulo}(ID: ${item.id}, Tipo: ${item.tipo})`}</h3>
+          <Style.TextContentDiv>
+            <h3>{`${item.titulo}`}</h3>
             <p>{item.introducao}</p>
-            <p>{`Há ${daysAgo} dias atrás`}</p>
+            <p>{`Há ${daysAgo} dia(s) atrás`}</p>
+          </Style.TextContentDiv>
+          <Style.DivReadAndFavorite>
             <ReadTheNewsHere
               link={item.link}
               onClick={() => window.open(item.link, "_blank")}
               />
-          </div>
-          <div>
             <FavoriteButton
               isFavorite={favorites.includes(item.id)}
               onClick={() => handleFavoriteClick(item)}
             />
-          </div>
+          </Style.DivReadAndFavorite>
         </Style.EachNewsCard>
       );
     });
@@ -104,7 +104,7 @@ function NewsCards() {
 
         <div>
         {filter !== "Favoritas" && visibleNewsCount < remainingNews.length && (
-          <Style.StyledButton onClick={handleLoadMoreClick}>Mais notícias</Style.StyledButton>
+          <Style.ReadMoreButton onClick={handleLoadMoreClick}>Mais notícias</Style.ReadMoreButton>
         )}
         </div>
       </div>
